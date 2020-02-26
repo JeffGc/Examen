@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UAM.OOP.Coneccion_DB
+namespace Prueba.AccesoDatos
 {
     public class ConeccionDB
     {
@@ -38,7 +38,7 @@ namespace UAM.OOP.Coneccion_DB
             }
         }
 
-        public void ConexionSQL(string sql)
+        public SqlDataReader ConexionSQL(string sql)
         {
             SqlConnection cnn;
             SqlCommand cmd;
@@ -56,10 +56,8 @@ namespace UAM.OOP.Coneccion_DB
 
                 if (resultado.HasRows)
                 {
-                    while (resultado.Read())
-                    {
-                        Console.WriteLine("{0}--{1}--{2}", resultado.GetInt32(0), resultado.GetString(1).Trim(), resultado.GetString(2).Trim());
-                    }
+                    cnn.Close();
+                    return resultado;                    
                 }
                 // Console.WriteLine(" ExecuteNonQuery in SqlCommand executed !!");
             }
@@ -72,6 +70,8 @@ namespace UAM.OOP.Coneccion_DB
             {
                 cnn.Close();
             }
+            return null;
+          
         }
 
 

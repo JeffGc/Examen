@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Prueba.AccesoDatos
 {
+  
     public interface IOperaciones<T>
     {
         void Insertar(T Item);
