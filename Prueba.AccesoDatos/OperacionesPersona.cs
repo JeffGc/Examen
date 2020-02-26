@@ -35,12 +35,31 @@ namespace Prueba.AccesoDatos
 
         public List<Persona> BuscarTodos()
         {
-            throw new NotImplementedException();
+            List<Persona> personas = new List<Persona>();
+
+            string query = string.Format("Select * from Persona");
+
+            // Recibe un objeto SQLDataReader de la consulta
+            SqlDataReader resultado = coneccionDB.ConexionSQL(query);
+
+            // Valida si el retorno no fue nulo y retorna una persona
+            if (resultado != null)
+            {
+                while (resultado.NextResult())
+                {
+                    //return new Persona(resultado.GetInt32(0), resultado.GetString(1).Trim(), resultado.GetString(2).Trim());
+
+                    personas.Add(new Persona(resultado.GetInt32(0), resultado.GetString(1).Trim(), resultado.GetString(2).Trim()));
+                }
+            }
+
+            return personas;
+           
         }
 
         public void Eliminar(Persona Item)
         {
-            List<Persona> resultado = new List<Persona>();
+           
 
             throw new NotImplementedException();
         }
